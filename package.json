@@ -6,15 +6,19 @@
     "api",
     "app"
   ],
-  "description": "",
+  "engines": {
+    "npm": "7.23.0"
+  },
   "main": "index.js",
   "scripts": {
-    "build": "npm run build --workspaces=app",
-    "start": "npm run start --workspaces=api",
-    "dev:api": "npm run build && npm run dev --workspaces=api"
+    "build": "SKIP_PREFLIGHT_CHECK=true npm run build --workspaces=app",
+    "lint": "eslint ./api ./app",
+    "start:api": "npm run start --workspaces=api",
+    "dev:api": "npm run build && npm run dev"
   },
   "eslintConfig": {
-
+    "ignorePatterns": "build",
+    "extends": "./node_modules/standard/eslintrc.json",
     "env":{
       "cypress/globals": true,
       "jest": true
